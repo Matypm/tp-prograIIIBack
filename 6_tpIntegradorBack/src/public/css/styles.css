@@ -2,6 +2,9 @@
     --msg-error-bg: #f8d7da;
     --msg-error-color: #58151c;
     --msg-error-border: #f1aeb5;
+    --msg-exito-bg: #d1e7dd;
+    --msg-exito-color: #0a3622;
+    --msg-exito-border: #a3cfbb;
 }
 
 
@@ -108,8 +111,8 @@ header, .enlaces {
 #deleteProduct-button {
     margin-bottom: 0;
 }
-
-/* .mensaje-error {
+/*
+.mensaje-error {
     color: var(--msg-error-color);
     background-color: var(--msg-error-bg);
     border: 1px solid var(--msg-error-border);
@@ -118,9 +121,10 @@ header, .enlaces {
     padding: 15px;
     width: 100%;
     text-align: center;
-} */
+}
+*/
 
-#updateProduct-form{
+#updateProduct-form {
     margin-top: 20px;
 }
 

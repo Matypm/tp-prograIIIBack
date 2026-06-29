@@ -90,7 +90,54 @@
     <script>
         const contenedorProductos = document.getElementById("contenedor-productos");
         const postProductForm = document.getElementById("postProduct-form");
+        const urlBase = "http://localhost:3000/api/productos";
 
+
+
+        // Optimizacion 1: Validacion previa de los datos en el cliente
+
+        function validarFormulario(data){
+            const errores = [];
+
+            if (!data.nombre || data.nombre.trim().lenght < 2){
+                errores.push("El nombre debe tener al menos dos caracteres");
+            };
+
+            if (!data.talle){
+                errores.push("Debe seleccionar un talle");
+            };
+
+            if (!data.precio || isNaN(data.precio) || Number(data.precio) < 0){
+                errores.push("El precio debe ser mayor a 0");
+            };
+
+            if (!data.temporada){
+                errores.push(`Debe seleccionar una temporada (formato: "25-26")`);
+            };
+
+            if (!data.img){
+                errores.push("Debe incluir una imagen");
+            };
+
+            return errores;
+        };
+
+        // Optimizacion 2: Mostramos el mensaje de exito o error visualmente
+        function mostrarMensaje(type, message){
+            contenedorProductos.innerHTML = `
+                <p class="mensaje mensaje-${type}">${message}</p>
+            `;
+        };
+
+        function mostrarListaErrores(array){
+            let htmlErrores = "";
+            array.forEach(error => {
+                htmlErrores += `<p class="mensaje mensaje-error">${error}</p>`;
+            });
+            contenedorProductos.innerHTML += htmlErrores;
+        };
+
+        // Gestionamos el envio de datos del formlario
         postProductForm.addEventListener("submit", async event => {
             event.preventDefault();
 
@@ -98,10 +145,25 @@
 
             const data = Object.fromEntries(formData.entries());
 
+            // Optimizacion 3: parseamos price antes de enviarlo, porque FormData devuelve todo como strings
+            data.precio = Number(data.precio);
+
             console.log(data); // {name: 'Muzza', image: 'https://.jpg', category: 'food', price: '123'}
 
+            // Optimizacion 4: Llamamos a la funcion para validar los datos del formulario
+            const errores = validarFormulario(data);
+
+            if (errores > 0){
+                console.log(errores); 
+                mostrarListaErrores(errores);
+                return;
+            };
+
+            
+
+
             try {
-                const response = await fetch("http://localhost:3000/api/products", {
+                const response = await fetch(urlBase, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -114,11 +176,24 @@
                 // Aca transformare la respuesta JSON que devuelve el endpoint: message: "Producto creado con exito"
                 const result = await response.json(); // Aca obtenemos la respuesta parseada que me devuelve el servidor
 
-                alert(result.message);
+                // Optimizacion 5: Manejamos respuestas no ok del servidor
+                if (!response.ok){
+
+                    if (result.listaErrores){
+                        mostrarListaErrores(result.listaErrores)
+                    }
+
+                    mostrarMensaje("error", result.message);
+                    return;
+                }
+
+                // En caso de exito, mostramos los siguientes mensajes
+                mostrarMensaje("exito", result.message)
                 console.log(result.message);
 
             } catch (error) {
                 console.error("Error al enviar los datos ", error);
+                mostrarMensaje("error", "Error al procesar la solicitud");
             }
         })
     </script>

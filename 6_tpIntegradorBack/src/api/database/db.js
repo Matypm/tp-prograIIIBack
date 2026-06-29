@@ -28,5 +28,5 @@ createPool() es una funcion que crea un grupo (pool) de conexiones a la BBDD
     - Se conecta a la BBDD usando los parametros host, user, password, etc
     - Le pasamos la configuracion desde el objeto database
     - Por defecto, abre hasta 10 conexiones simultaneas
-    - Permite usar awat connection.query() para ejecutar SQL
+    - Permite usar await connection.query() para ejecutar SQL
 */
