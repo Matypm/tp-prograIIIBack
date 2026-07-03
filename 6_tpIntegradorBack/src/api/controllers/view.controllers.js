@@ -27,7 +27,7 @@ export const indexView = async (req, res) => {
 export const getView = (req, res) => {
     res.render("get", {
         title: "Consultar",
-        about: "Consultar producto por id:"
+        about: "Consultar producto por id"
     });
 }
 
@@ -45,7 +45,7 @@ export const postView = (req, res) => {
 export const putView = (req, res) => {
     res.render("put", {
         title: "Modificar",
-        about: "Consultar producto por id:"
+        about: "Modificar producto"
     });
 }
 
@@ -53,6 +53,6 @@ export const putView = (req, res) => {
 export const deleteView = (req, res) => {
     res.render("delete", {
         title: "Eliminar",
-        about: "Consultar producto por id:"
+        about: "Eliminar producto por id"
     })
 }

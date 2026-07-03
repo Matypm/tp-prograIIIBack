@@ -5,6 +5,22 @@
     --msg-exito-bg: #d1e7dd;
     --msg-exito-color: #0a3622;
     --msg-exito-border: #a3cfbb;
+    --color-fondo: #474747;
+    --color-fondo-header: #1f1f1f;
+    --color-amarillo: #ffd700;
+    --color-hover-border: #daa520;
+    --btn-hover-color: #f1b96b;
+    --btn-no-hover-color: #ffe2b8;
+    --color-blanco: #ffffff;
+    --color-gris-forms: #808080;
+    --color-verde-borde-forms: #d8ff7d;
+}
+
+body{
+    max-width: 75em;
+    background-color: var(--color-fondo);
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -12,30 +28,85 @@ ul {
     list-style-type: none;
 }
 
+h2{
+    color: azure;
+}
+
 header {
     height: 80px;
+    border-bottom: 3px solid white;
+    background-color: var(--color-fondo-header);
+}
+
+a:visited{
+    color: var(--color-amarillo);
+}
+
+a:hover{
+    color: var(--color-hover-border);
+}
+
+input, select{
+    background-color: var(--color-gris-forms);
+    border-color: var(--color-hover-border);
+}
+
+input:hover, input:focus, select:hover, select:focus{
+    background-color: var(--color-gris-forms);
+    border-color: var(--color-verde-borde-forms);
+}
+
+input[type=submit], input[type=button]{
+    background-color: var(--btn-no-hover-color);
+    border-color: var(--color-hover-border);
+}
+
+input[type=submit]:hover, input[type=button]:hover{
+    background-color: var(--btn-hover-color);
+    border-color: var(--color-hover-border);
+}
+
+textarea, select, input{
+    color: var(--color-blanco);
+}
+
+hr{
+    border-color: var(--color-blanco);
+}
+
+main{
+    max-width: 35em;
+    margin: auto;
 }
 
 header, .enlaces {
     display: flex;
     /* border: 1px solid; */
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .logo {
     width: 50px;
     height: 50px;
     margin: auto;
+    padding: 0 0 0 2%;
 }
 
 .logo img {
     border-radius: 5px;
+    margin: 0;
 }
 
 .enlaces {
     width: 85%;
     margin-bottom: 0;
     align-items: center;
+    padding: 0 10% 0 10%;
+}
+
+.form-logout{
+    margin: auto;
+    padding: 0 4% 0 0;
 }
 
 
@@ -52,7 +123,7 @@ header, .enlaces {
     color: black;
     margin-bottom: 25px;
     border-radius: 5px;
-    border: 3px solid #eb99a1;
+    border: 3px solid #ffb936;
     padding: 10px;
 }
 
@@ -106,6 +177,17 @@ header, .enlaces {
     display: flex;
     flex-direction: column;
     width: 45%;
+}
+
+#loginForm{
+    max-width: 35em;
+    margin: auto;
+    padding-top: 5%;
+}
+
+.titulo-login{
+    display: flex;
+    justify-content: center;
 }
 
 #deleteProduct-button {
